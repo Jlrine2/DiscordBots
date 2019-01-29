@@ -1,12 +1,11 @@
 import discord, random, re
 
+#open config file
+config_file = open("RollBot.Config", "r")
 
-config_file = open("RollBotConfig", "r")
+#get token value without new line
+BotID = config_file.readline().split(": ")[1].rstrip('\r\n')
 
-
-
-#bot key
-BotID = config_file.readline()
 
 
 client = discord.Client()
