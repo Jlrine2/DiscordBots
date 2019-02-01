@@ -6,7 +6,7 @@ config_file = open("RollBot.Config", "r")
 #get token value without new line
 BotID = config_file.readline().split(": ")[1].rstrip('\r\n')
 
-
+#comment
 
 client = discord.Client()
 
