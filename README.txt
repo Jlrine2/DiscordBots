@@ -1,4 +1,3 @@
-# RollBot
 
 To get bot up and running:
 
