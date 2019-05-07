@@ -1,45 +1,44 @@
-import discord, random, re
+import discord
+import random
+import re
 
-#open config file
+# open config file
 config_file = open("RollBot.Config", "r")
 
-#get token value without new line
+# get token value without new line
 BotID = config_file.readline().split(": ")[1].rstrip('\r\n')
 
-#comment
+# comment
 
 client = discord.Client()
 
-#roll a random dice of n value
+# roll a random dice of n value
+
+
 def roll(n):
     return random.randint(1, n)
 
-#retrieve the n value for a dice roll from message
-def get_die(text):
-    rollstr = re.findall('/roll d\d+',text)
-    die = re.findall('\d+',rollstr[0])
-    return die[0]
 
-
-
-
-#on every message
+# on every message
 @client.event
 async def on_message(message):
 
-    #Do not reply to self
+    # Do not reply to self
 
     if message.author == client.user:
         return
 
-    if '/roll' in message.content:
-        die = get_die(message.content)
-        print(die)
-        await client.send_message(message.channel, 'Rolling d' + str(int(die)) + '... result: ' + str(roll(int(die))))
+    if str(message.content).startswith('/roll'):
+        for die in re.findall('d\d+', message.content):
+            num = re.findall('\d+', die)[0]
+            send = 'Rolling d' + str(int(num)) + '... result: ' + str(roll(int(num)))
+            await message.channel.send(send)
         return
 
 
-#on initialization
+
+
+# on initialization
 @client.event
 async def on_ready():
     print ('logged in as')
