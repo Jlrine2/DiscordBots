@@ -1,9 +1,7 @@
 import discord
 import os
 
-# get token value without new line
-BotID = 'NjI4Nzc5ODI2NTgwNTUzNzM5.XZQK4A.vydvTbk0mIw6QV1V4kccP0Znsm4'
-# comment
+BotID = str(os.getenv(TOKEN))
 
 client = discord.Client()
 
